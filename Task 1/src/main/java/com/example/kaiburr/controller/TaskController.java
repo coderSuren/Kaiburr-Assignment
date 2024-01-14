@@ -3,6 +3,7 @@ package com.example.kaiburr.controller;
 import com.example.kaiburr.model.Task;
 import com.example.kaiburr.repository.TaskRepository;
 import com.example.kaiburr.resource.TaskRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 public class TaskController {
+
     private final TaskRepository taskRepository;
 
     public TaskController(TaskRepository taskRepository) {
@@ -74,7 +77,6 @@ public class TaskController {
 
     @PostMapping("/task")
     public ResponseEntity<Task> createTask(@RequestBody TaskRequest taskRequest) {
-//        taskRequest.setSurendranProperty();
         Task task = new Task();
         task.setName(taskRequest.getName());
         task.setId(taskRequest.getId());
@@ -95,7 +97,7 @@ public class TaskController {
             taskRepository.deleteById(id);
             return ResponseEntity.ok("Task deleted successfully");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The Task with Id: " + id + " was not found.");
+            return ResponseEntity.status(404).body("The Task with Id: " + id + " was not found.");
         }
     }
 }

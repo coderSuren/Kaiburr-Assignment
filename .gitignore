@@ -29,6 +29,17 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+Task 3/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+# misc
+.DS_Store
+
 ### VS Code ###
 .vscode/
 
