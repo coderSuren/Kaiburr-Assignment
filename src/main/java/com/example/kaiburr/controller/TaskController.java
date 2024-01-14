@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class TaskController {
     private final TaskRepository taskRepository;
@@ -20,6 +21,7 @@ public class TaskController {
         this.taskRepository = taskRepository;
     }
 
+    @CrossOrigin
     @GetMapping("/task")
     public ResponseEntity<List<Task>> getAllTasks() {
 
