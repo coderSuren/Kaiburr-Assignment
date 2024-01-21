@@ -53,6 +53,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>kaiburr-task4-cicd-pipeline</finalName>
 	</build>
 
 </project>
