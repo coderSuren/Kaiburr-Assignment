@@ -22,7 +22,7 @@ export default function SearchForm() {
     const [rows, setRows] = useState([]);
     const [name, setName] = useState("");
     const [message, setMessage] = useState({message:"",color:""})
-    const [alignment, setAlignment] = React.useState('name');
+    const [alignment, setAlignment] = React.useState('id');
 
     const handleChange = (event, newAlignment) => {
         if (newAlignment !== null) {
@@ -36,6 +36,7 @@ export default function SearchForm() {
     const handleClick=(e)=>{
         e.preventDefault()
         setRows([]);
+        setMessage({message:"",color:""});
         if(name){
             if (alignment==="assignee"){
                 fetch(env.BACKEND_URL+"findByAssignee/"+name,{
@@ -63,11 +64,27 @@ export default function SearchForm() {
                         setRows(result);
                     }
                     else{
-                        setMessage({color:"red",message:"Tasks with name containing "+name+ " not found"});
+                        setMessage({color:"red",message:"Tasks with name containing: "+name+ " not found"});
                     }
                 })
             }
-        }  
+            else if(alignment==="id"){
+                fetch(env.BACKEND_URL+"task/"+name,{
+                    method:"GET",
+                    headers:{"Content-Type":"application/json"},
+                }
+                ).then(async (res)=>{
+                    if(res.status===200){
+                        const result = await res.json();
+                        setRows([result]);
+                    }
+                    else{
+                        setMessage({color:"red",message:"Task with id: "+name+ " not found"});
+                    }
+                })
+            }
+            
+        }
         else{
             setMessage({color:"red",message:"Please enter all the fields"})
         }
@@ -90,7 +107,8 @@ export default function SearchForm() {
                 exclusive
                 onChange={handleChange}
                 aria-label="Platform"
-            >
+            >   
+                <ToggleButton value="id">By Id</ToggleButton>
                 <ToggleButton value="name">By Name</ToggleButton>
                 <ToggleButton value="assignee">By Assignee</ToggleButton>
             </ToggleButtonGroup>
@@ -119,6 +137,23 @@ export default function SearchForm() {
                 <TextField 
                 id="outlined-basic" 
                 label="Assignee Name" 
+                variant="outlined" 
+                fullWidth 
+                style={{width: '60%'}}
+                value={name}
+                onChange={(e)=>setName(e.target.value)}
+                onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
+                />
+                <br/>
+                <Button variant="contained" color="primary"  onClick={handleClick}>
+                    Submit
+                </Button>
+                </>
+            ): alignment === 'id' ? (
+                <>
+                <TextField 
+                id="outlined-basic" 
+                label="Task Id" 
                 variant="outlined" 
                 fullWidth 
                 style={{width: '60%'}}
