@@ -1,45 +1,59 @@
-# Kaiburr Task 4 CI/CD Pipeline for Spring Boot API
-This repository contains the CI/CD pipeline configuration for building and deploying a Spring Boot API (created in Task 1) using GitHub Actions.
-## Workflow
-### 1. Created a Workflow File `.github/workflows/docker-image.yml` on `deploy` branch
-### 2. Specified the workflow, triggers, and jobs in YAML format.
-#### docker-image.yml
-  ```yml
-    name: Docker Image CI
+# Kaiburr Task 2 Kubernetes
+
+
+## Overview
+This task uses the application created in Task #1 to build and deploy application in a Kubernetes Cluster. The deployment includes creating Docker images for the application, generating Kubernetes YAML manifests for deployment and service, and setting up a local Kubernetes cluster using Minikube with Docker as the runtime. Additionally, MongoDB will be deployed to the cluster with a persistent volume of 1GB and a replica set.
+
+
+## Steps
+
+### 1. Create Docker Images
+  #### Build Docker images for the Spring boot application as `spring-mongo-service:1.0`
+   ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/7db86e25-4e29-42e7-b105-af402033f6cb)
+
   
-    on:
-        push:
-          branches: [ "deploy" ]
-        pull_request:
-          branches: [ "deploy" ]
-      
-      jobs:
-      
-        build:
-  
-      runs-on: ubuntu-latest
-  
-      steps:
-      - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+### 2. Create Kubernetes YAML Manifests
+  Create YAML manifests for the application deployment and service. Sample files can be found in the `Task 2\src\main\resources` directory.
+   - ConfigMap: mongo-config.yml
+   - Deployment: deployment.yaml, mongo-deployment.yml
+   - Service: application.yaml
+   - Secrets: mongo-secret.yml
+
+### 3. Set Up Local Kubernetes Cluster
+
+  Start Minikube with Docker as the runtime
+  ```bash
+    minikube start --driver=docker
   ```
-### 3. Add a step to build the application and run unit tests.
-### 4. Include a `Dockerfile` to set up the Docker environment and build a Docker image.
-#### Dockerfile
-```Dockerfile
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
-EXPOSE 8081
-```
-### 5. Trigger the workflow by pushing changes to the `deploy` branch.
-### 6. Set up any necessary secrets or environment variables in the repository settings.
+  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/d179e9a0-526f-4e09-96a5-da8c506a9d0c)
 
-## Screenshots
-  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/bd18b8ec-79f1-48bc-8979-0497e652e234)
 
-  
-  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/45d9dca7-1764-4a12-9a07-3f099529aac5)
+### 4. Apply Kubernetes Manifests and Deploy MongoDB to the Cluster
+  - Deploy MongoDB to the cluster using the provided `mongo-deployment.yml` file. This file includes configurations for a persistent volume of 1GB and 1 replica.
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/71b512d0-eac7-4a16-aef7-10e0d492a315)
+  - Persistent Volume Store of 1GB
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/4eb767b8-889c-4aa8-8a69-a13364b8f31a)
 
+
+
+### 5. Verify Deployment
+  - Checking the status of application and MongoDB pods:
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/9c612bdb-f91c-431c-bc85-e71aa076d440)
+  - Kubectl log of springboot application
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/4b2c6d43-8e90-4ad0-94b9-082895f900fa)
+
+
+### 6. Access Application Endpoints
+  - Port forwarding to make the application endpoints accessible from the host machine 
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/6f10c69d-f758-44cb-a264-f5099f58aab5)
+  - PUT Request a task object to empty database `tasksdb`
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/44be6c0a-9893-40f4-a260-d7f384d612f8)
+  - GET Request to retrieve all tasks
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/50e67cb3-206a-48ca-b526-f95a621ce723)
+
+
+### 7. Cleanup
+  When finished, clean up resources by stopping Minikube:
+  ```bash
+    minikube stop
+  ```
