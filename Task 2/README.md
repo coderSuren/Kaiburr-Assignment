@@ -14,10 +14,10 @@ This task uses the application created in Task #1 to build and deploy applicatio
   
 ### 2. Create Kubernetes YAML Manifests
   Create YAML manifests for the application deployment and service. Sample files can be found in the `Task 2\src\main\resources` directory.
-   - ConfigMap: mongo-config.yml
-   - Deployment: deployment.yaml, mongo-deployment.yml
-   - Service: application.yaml
-   - Secrets: mongo-secret.yml
+   - ConfigMap: [mongo-config.yml](https://github.com/coderSuren/Kaiburr-Assignment/blob/main/Task%202/src/main/resources/mongo-config.yml)
+   - Deployment: [deployment.yml](https://github.com/coderSuren/Kaiburr-Assignment/blob/main/Task%202/src/main/resources/deployment.yml), [mongo-deployment.yml](https://github.com/coderSuren/Kaiburr-Assignment/blob/main/Task%202/src/main/resources/mongo-deployment.yml)
+   - Service: [application.yml](https://github.com/coderSuren/Kaiburr-Assignment/blob/main/Task%202/src/main/resources/application.yml)
+   - Secrets: [mongo-secret.yml](https://github.com/coderSuren/Kaiburr-Assignment/blob/main/Task%202/src/main/resources/mongo-secret.yml)
 
 ### 3. Set Up Local Kubernetes Cluster
 
