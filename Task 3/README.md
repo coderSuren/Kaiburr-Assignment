@@ -29,24 +29,24 @@ This project is the frontend part of a task management application developed usi
 - Use Postman or any HTTP client to test the backend API.
 
 ## Screenshots
-### Create Task
-  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/502a49d2-052e-442d-b7f7-68a9509fde77)
-### Task Created Successfully
-  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/0392c3e4-0bc7-4ec4-96a5-e003c8421300)
-### View Tasks
-  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/470682d3-dc9b-4757-b2bd-db7fac8e64ae)
+  - ### Create Task
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/502a49d2-052e-442d-b7f7-68a9509fde77)
+  - ### Task Created Successfully
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/0392c3e4-0bc7-4ec4-96a5-e003c8421300)
+  - ### View Tasks
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/470682d3-dc9b-4757-b2bd-db7fac8e64ae)
 
-### Search for Tasks
-  - ### By Id
-    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/b16bbc3e-90c2-47ce-aa26-208b9c77c3a1)
-  - ### By Name
-    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/6fe32524-9f15-4120-a639-66be4dfb9b8d)
-  - ### By Assignee
-    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/e69b32ad-7322-46bf-b7f6-d432baf0c3b2)
+  - ### Search for Tasks
+    - ### By Id
+      ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/b16bbc3e-90c2-47ce-aa26-208b9c77c3a1)
+    - ### By Name
+      ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/6fe32524-9f15-4120-a639-66be4dfb9b8d)
+    - ### By Assignee
+      ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/e69b32ad-7322-46bf-b7f6-d432baf0c3b2)
 
-### Delete Task(s)
-  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/929ce2a6-72fa-4f46-947d-b2697466bf3f)
-  ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/9e888efb-556e-4300-9e4a-b3af5012afb2)
+  - ### Delete Task(s)
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/929ce2a6-72fa-4f46-947d-b2697466bf3f)
+    ![image](https://github.com/coderSuren/Kaiburr-Assignment/assets/80509210/9e888efb-556e-4300-9e4a-b3af5012afb2)
 
     
   
